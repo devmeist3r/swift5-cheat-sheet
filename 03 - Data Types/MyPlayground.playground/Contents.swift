@@ -1,0 +1,120 @@
+import UIKit
+
+/**
+ * What is Data Type?
+ * A particular kind of data item, such as integer, double, string, Boolean, or Class that determines the possible values for the type.
+ * Operating system allocates memory on the basis of data type of a variable.
+ * Swift has its own primitive data types and other data types like collection data types, function data types, enumated data types, etc.
+ */
+
+// MARK: - Boolean Types
+/**
+ * A basic boolean type called Bool
+ * Boolean values can be either true or false
+ */
+let philScillerIsAnAwesomePerson: Bool = true
+let timeCookIsACeoOfGoogle: Bool = false
+
+// MARK: - Character Types
+/// A character is swift is a single character String literal addressed by tje data type Character
+/// Can not create an empty character variable or constant with an empty value. Swift does not allow this
+let lastCharOfApple: Character = "E"
+let lastCharOfGoogle: Character = "E"
+// let createAnEmpty: Character = "" // Error
+
+// MARK: - Integer Types
+
+/// Int32
+/// Define 32 bits signed integer (signed integer means negative values, zero value, or positve integer values)
+let numberOfApples: Int32 = 10
+
+/// Int64
+/// Define 64 bit signed integer
+var numberOfPoints: Int64 = -5
+
+/// UInt32
+/// Define 32 bit unsigned integers (zero or positive integer values)
+var numberOfApples1: UInt32 = 10
+
+/// UInt64
+/// Define 64 bit unsigned integers
+var numberOfPoints1: UInt64 = 5
+
+/// Int
+/// Int corresponds to Int32 on a 32-bit architecture and to Int64 on a 64-bit architecture.
+let numberOfApples2: Int = 10
+
+// MARK: - Floating Point Types
+
+/// Float
+/// Define 32 bit floating-point numbers. Precision of at-least 6 decimal digits.
+var pie: Float = 3.14
+
+/// Double
+/// Define 64 bit floating-point numbers. Precision of at-least 15 decimal digits
+var myDoubleNumber: Double = 10.14567
+
+// MARK: - TypeAlias Types
+
+/// Define an alternative name for an existing type.
+typealias Pressure = Int
+/// Now you can use to create a variable of data type Pressure
+var amount: Pressure = 20
+
+// MARK: - Tuples
+/// Group multiple values into a single compound value.
+/// Each value can be of any data type.
+/// Can have any number of values inside a tuple.
+let createATupple: (Int, Int, Int, Double, Bool) = (5, 4, 7, 20.514, true)
+let fullName: (String, String) = ("Lucas", "Inocencio")
+
+/// Access the individual element values in a tuple using index number
+print("First name is \(fullName.0)")
+print("Last name is \(fullName.1)")
+
+/// Access the individual element values is a tuple using element name
+let name = (firstName: "Tim", lastName: "Cook")
+print("First Name of Apple CEO is \(name.firstName)")
+print("Last Name of Apple CEO is \(name.lastName)")
+
+/// Access the individual element values in a tuple using underscore(_). Use underscore to ignore other elements.
+let (firstName, _) = fullName
+print("First Name is \(firstName)")
+
+// MARK: - Optionals
+/// Either "there is a value, and it equals x" OR "there is no value at all".
+/// Declare an optional Integer type variable
+var mayContainValue: Int?
+// Value of uninitialized optional variable mayContainValue is nil
+
+/// Declare an optional Double type variable
+var mayContainValue1: Double?
+
+/// Use an exclamation mark(!) to access an existent optional value. Also called Forced Unwrapping of the optional's value.
+let myName: String = "123"
+let myOptionalNumber: Int? = Int(myName) // Integer Conversion
+if myOptionalNumber != nil {
+    print("myName has an Integer value of \(String(describing: myOptionalNumber))")
+} else {
+    print("myName has no Integer type value")
+}
+
+/// Use nil to set an optional variable to a valueless state
+var myName1: String? = "Lucas"
+myName1 = nil
+
+// MARK: - Type Inference
+/// Type Inference feature of Swift enables a compiler to conclude the type of a variable or a constant automatically even if we declare a variable or a constant without specifying its data type.
+/// Below var1 is inferred to type Int automatically
+var var1 = 20
+
+/// Below var2 is inferred to type Double automatically.
+var var2 = 20.25
+
+/// Below constant timCoolIsACeoOfApple is inferred to type Bool automatically.
+let timCoolIsACeoOfApple = true
+
+/// Below constant myOptional is inferred to optional Int automatically.
+let aString = "Amint"
+let myOptional = Int(aString)
+
