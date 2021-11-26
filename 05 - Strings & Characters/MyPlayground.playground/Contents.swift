@@ -1,0 +1,176 @@
+import UIKit
+
+// MARK: - Strings & Characters
+/// String is a sequence of characters or an array of characters
+/// Either as a literal constant or a variable
+/// var string of swift can be mutated. Literal String can not be mutated.
+/// String is a data type in computer programming language.
+
+// MARK: - Basic Points
+/**
+ * Collection of Characters surronded by a pair of double quotes shuch as "Hello, World"
+ * NSString APIs are avalible to call on any Swift string value.
+ * Swift String are value types.
+ * Value types means each instance keeps an unique copy of its data
+ * For example: If instance A = instance B. And if you change the value of instance B, it will not change the value of instance A.
+ **/
+
+// MARK: - Create a String
+/// Create a String using a string literal
+var stringA = "Hello, Swift!"
+var stringA1 = "" // an empty swift string value created
+print(stringA)
+
+/// Create a multiline string literal using three double quotation marks
+var StringB = """
+Hello, Swift!
+Swift is a simple, fast, and powerful language.
+
+Created by Apple, Inc. \
+Introduced in the year 2014.
+"""
+
+/// Create a string using String initializer.
+var stringC = String("Hello, Swift!")
+var stringC1 = String() // an empty swift string value created
+print(stringC)
+
+// MARK: - Mutating Strings
+/// String created using let keyword can not be mutated. Because they are constants.
+let stringD: String = "Hello, Swift!"
+
+/// String created using var keyword can mutated or change
+var stringE: String = "Hello, Swift!"
+stringE = "Hello, C#"
+
+// MARK: String Concatenation
+/// Concatenate strings to make a new string.
+/// Use "+" operator to concatenate two strings or a string and a character.
+let s1: String = "Hello"
+let s2: String = "_Swift"
+let c1: String = "!"
+let c2: String = "!"
+
+var s1ands2 = s1 + s2
+s1ands2.append(c1)
+s1ands2.append(c2)
+
+// MARK: - String Interpolation
+/// String interpolation is a way to construct a new string value from a mix of constants, variables, literals, and expressions by including their values inside a string literal.
+/// "Each item that we insert into the string literal is wrapped in a pair of parentheses, prefixed by a backslash(\)"
+
+let x = 5
+let y = 25
+var z: Float = 5.0
+var interpolatedString = "\(x) times \(y)equals to \(z * 25)"
+print(interpolatedString)
+
+// MARK: - String Length
+/// To find out the length of a string.
+/// Use global countElements function to count the number of characters is a string
+let myString = "Apple"
+print("Total number of characters in myString is \(myString.count)")
+
+// MARK: String Comparison
+/// To compare different Strings.
+/// Swift provides three ways to compare strings values
+/// Compare using == operator (called string equality) or using != operator (inequality)
+let stringA3 = "Hello String 3 Value"
+let stringA4 = "Hello String 4 Value"
+if stringA3 == stringA4 {
+    print("Both string valures are equal")
+} else if stringA3 != stringA4 {
+    print("Both string values are not equal")
+}
+
+/// Compare using hasPrefix method
+let anArrayOfStrings = [
+    "First: Jesse", "Last: Grosjean",
+    "First: Tim", "Last: Cook",
+    "First: Phil", "Last: Schiller",
+    "First: Tom",
+    "First: Daniel", "Last: Cook",
+]
+var count = 0
+for first in anArrayOfStrings {
+    if first.hasPrefix("First") {
+        count += 1
+    }
+    print("\(count)")
+}
+
+/// Compare using hasSuffix method
+for first in anArrayOfStrings {
+    if first.hasSuffix("Cook") {
+        count += 1
+    }
+    print("\(count)")
+}
+
+// MARK: - Accessing and Modifying a String
+/// Access and modify a string using methods, properties, or by using subscripts.
+
+// MARK: - Uppercase and Lowercase Strings
+/// To change the case of a string.
+/// Use uppercased method to get uppercase of a string value
+let str1 = "Steve Jobs was revolutionary person"
+let str2 = str1.uppercased()
+print(str2)
+
+/// Use lowercased method to get lowercase of a string value.
+
+let str3 = "Bill Gates is a Great Person"
+let str4 = str3.lowercased()
+print(str4)
+
+// MARK: String Indices
+/// Access a character in a string using index property using subscripts syntax. For ex: string[string.index]
+/// startIndex property: return the fisrt character of a string.
+
+let fullname = "Apple, Inc"
+print("Second character in fullName is \(fullname[fullname.index(after: fullname.startIndex)])")
+
+/// endIndex property: return error as it is a position after the last character of a string. So, use index(before:) method
+print("Last character in fullname is \(fullname[fullname.index(before: fullname.endIndex)])")
+
+/// index(_offsetBy: ) method returns a character farther away from a given position.
+var index = fullname.index(fullname.startIndex, offsetBy: 2)
+print("Character at index positions is \(fullname[index])")
+
+// MARK: - Inserting
+/// insert(_:at:) method insert a character at a specified index.
+/// insert(contentsOf:at:) method insert a string at a specified index.
+
+var language = "Swift "
+language.insert("!", at: language.endIndex)
+
+language.insert(contentsOf: "programming", at: language.index(before: language.endIndex))
+
+// MARK: - Removing
+/// remove(at:) method remove a character from a string at a specified index.
+/// removeSubrange(_:) method remove a substring at a specified range.
+
+var language1 = "Swift programming!"
+language1.remove(at: language.index(before: language.endIndex))
+print(language)
+
+let range = language1.index(language1.endIndex, offsetBy: -6)..<language1.endIndex
+language1.removeSubrange(range)
+print(language1)
+
+// MARK: - Characters
+/// Single Unicode Characters. Can be a single digit, can be a single alphabet, can br a single special character, etc.
+/// A character is Swift is a single character String literal addressed by the data type Character
+/// Can not create an empty character variable or constant with an empty value. Swift does not allow this.
+
+let lastCharOfApple: Character = "E"
+let lastCharOfGoogle: Character = "E"
+//let createAnEmpty: Character = ""//Error
+
+// MARK: - Accessing Characters from Strings
+/// As a string is a collection of characters, you can use for-in loop to access each characters from the given string
+
+let myString3 = "Apple"
+for myIndex in myString3.indices {
+    print(myString3[myIndex])
+}
