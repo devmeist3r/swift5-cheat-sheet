@@ -23,3 +23,4 @@ swiftSet1.insert(2)
 print(swiftSet1)
 swiftSet1 = []
 print(swiftSet1)
+print(swiftSet1)
