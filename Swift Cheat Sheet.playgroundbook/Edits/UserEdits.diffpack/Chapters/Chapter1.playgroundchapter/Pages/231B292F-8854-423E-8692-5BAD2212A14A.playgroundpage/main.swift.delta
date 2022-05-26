@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>BaseFile</key>
+	<string>Chapters/Chapter1.playgroundchapter/Pages/Template.playgroundpage/main.swift</string>
+	<key>Diffs</key>
+	<array>
+		<dict>
+			<key>ModifiedContent</key>
+			<string>import Foundation
+
+/**
+ 1 - Conditional Statements are generally of your types.
+ 2 - Loop Statements: Repeatedly execute a block of statements.
+ 3 - Branching: To change the normal, sequential flow of control.
+ 4 - Exception Handling: Respond to the occurrence of exceptions and change the normal flow of execution.
+ */
+
+// MARK: - For-In Loops
+/**
+ - Use the for-in loop to iterate over a sequence, such as ranges of numbers, items in array, characters in a string, or to iterate over the entire set of key-value pairs in a dictionary.
+ - Initially the value of index will set to 1, and will increase after the execution of a statements to its next value in the half-closed range.
+ */
+for index in 1..&lt;5 {
+    print("\(index) is the current value of index")
+}
+/**
+ - Use for-in loop with an array to iterate over its items.
+ */
+let swiftArray = ["Tim Cook", "Sundar Pichai", "Jeff Bezos"]
+for name in swiftArray {
+    print("Dear \(name)")
+}
+
+/**
+ - Use a for-in loop to iterate over dictionary to access its key-value pairs. Key-value pair is a tuple in the below. 
+ */
+let swiftDict = ["Apple": 1, "Google": 2, "Amazon": 3]
+for (companyName, rank) in swiftDict {
+    print("Company \(companyName) has a rank of \(rank)")
+}
+
+// MARK: - While Loops
+/**
+ - Swift provide two kinds of while loops.
+ 1 - while
+ 2 - repeat-while
+ */
+
+/**
+ - while loop statements example
+ */
+var index: Int = 0
+while index &lt; 14 {
+    print("Value of index is \(index)")
+    index += 1
+}
+
+/**
+ - A while loop starts by evaluating a single condition. If the condition is true, a set of statement is executed until the condition becomes false.
+ - while statements syntax
+ - while loop statements example
+ - repeat-while statements syntax
+ - repeat-while loop perform a single pass through the loop block first, before considering the loop's execution. In the continues to repeat the loop until the condition is false.
+ - repeat-while statements example
+ */
+var index1: Int = 0
+repeat { 
+    print("Value of index \(index1)")
+    index1 += 1
+} while index1 &lt; 14
+
+// MARK: - If
+/**
+ - If the condition is true, then the block of code inside the if statement will be executed.
+ */
+var swiftVar: Int = 10
+if swiftVar &lt;= 10 { 
+    print("swiftVar value is smaller than 10")
+}
+
+// MARK: If-Else
+/**
+ - An if statement is followed by an else statement.
+ - If the condition of if statement is true then code inside if statement will be executed. Code inside else statement will not be executed.
+ */
+var swiftVar1: Int = 10
+if swiftVar1 &lt; 10 { 
+    print("swiftVar1 value is smaller than 10")
+} else { 
+    print("swiftVar1 value is greater than or equal to 10")
+}
+
+// MARK: - Nested If-Else
+/**
+ - Chain multiple if-else statement together.
+ - Use an if-else statement inside an another if-else statement
+ - Nested If-else statements syntax
+ */
+var swiftVar2: Int = 10
+if swiftVar2 == 20 { 
+    print("swiftVar2 value is 20")
+} else if swiftVar2 == 40 {
+    print("swiftVar2 value is 40")
+} else if swiftVar2 == 60 { 
+    print("swiftVar2 value is 60")
+} else {
+    print("PLEASE DO NOT PRINT")
+}
+
+// MARK: - Guard Statement
+/**
+ - A guard statement always has an else clause.
+ - Guard executes statement, like an if statement but not code inside if block, based on a Boolean value of an expression.
+ - Guard statements only run if the conditions are not met.
+ - If the condition of guard statement is true, code execution continues after statement close brace.
+ - Improves the readability of your code.
+ */
+
+var iCanDrink = true
+func canIdrink() { 
+    guard iCanDrink else {
+        print("You can't drink! let me take you to the jail")
+        return
+    }
+    print("I can drink")
+}
+
+canIdrink()
+
+// MARK: - Switch-Case
+/**
+ - Switch Statements simulate the use of multiple if statement.
+ - A Switch statement allows a variable to be compared and matched for equality against a list of values. It the executes an appropriate block of code, based on the first value that matches successfully to the variable
+ - In Swift, the entires switch statement finishes its execution as soon as the first matching switch case is completed, without requiring an explicit break statement. So, no implicit fall through the bottom of each case.
+ - So, break statement is completely optional.
+ - Body of each case should not be empty. Body of each case must contain at least one executable statement, 
+ - Multiple matches for a single switch case can be separeted by commas
+ */
+
+/// Interval Matching Example
+let launchedYear: Int = 2007
+switch launchedYear { 
+case 2000:
+    print("iPhone is not launched.")
+case 2001..&lt;2004, 2004..&lt;2007:
+    print("iPhone is not launched in this year.")
+case 2007..&lt;2010:
+    print("iPhone is launched in this awesome year.")
+default: 
+    print("iPhone is launched and created by Apple.")
+}
+
+/// Tuples Example
+let person: (String, Int) = ("Steve", 25)
+switch person {
+case("Bill",_):
+    print("Your name is Bill. Looking for Steve. Not interested in your age.")
+case("Steve", let age):
+    print("Steve looking for you with \(age) years old")
+case(_, _):
+    print("Do not care for matching. Print nothing.")
+}
+
+/// Where clause
+/**
+ - Use where clause in case statements to check additional conditions.
+ - Example of where statements used in switch statements to check additional conditions.
+ */
+let operatiosSystem = ("iOS", "Android")
+switch operatiosSystem {
+case let(a, b) where a == b:
+    print("\(a) and \(b) are same operating systems")
+case let(a, b) where a != b:
+    print("\(a) and \(b) are different operating systems")
+default:
+    print("No operating systems")
+}
+
+/// use of where clause in generic function to add constraints to placeholder type.
+func genericFunction&lt;S&gt;(string: S) where S: ExpressibleByStringLiteral {
+    print(string)
+}
+genericFunction(string: "abcd")
+
+/// use of where class in for in loop 
+let arr = [1, 2, 3, 4]
+let dict = [1: "one", 2: "two"]
+
+for num in arr where dict[num] != nil {
+    print(dict[num] as Any)
+}
+
+// MARK: Branching Statements
+
+/// Contiune Statement
+/**
+ - Opposite of break statement.
+ - Forces the next iteration of the loop to take place, skipping any code in between itself and the test conditions of the loop.
+ - In while and in repeat-while loops, a continue statement will cause control, to go directly to the test condition and then continue the looping process.
+ */
+
+var i = 5
+repeat {
+    i += 1
+    if i == 10 {
+        continue
+    }
+    print("Value of i is \(i)\n")
+} while i &lt; 12
+
+/// Break Statement
+/**
+ - Opposite of continue statement.
+ - Causes immediate exit from the loop and the control is transferred to the statement following the loop.
+ - Can use in loop statements (while, for-in, repeat-while) and in conditional statements like in switch.
+ */
+var i1 = 5
+repeat { 
+    i1 += 1
+    if i1 == 10 { 
+        break
+    }
+    print("Value of i1 is \(i1)\n")
+} while i1 &lt; 12
+
+/// Fallthrough Statement
+/**
+ - Then execution will exit from the switch loop.
+ */
+let iPhoneNumber = 8
+var description = "iPhone \(iPhoneNumber) is "
+switch iPhoneNumber {
+case 6:
+    description += "launched in the"
+    fallthrough
+case 8:
+    description += "launched in the"
+    fallthrough
+default:
+    description += "year 2014 by Apple, Inc."
+}
+print(description)
+</string>
+			<key>ModifiedRange</key>
+			<string>{0, 7224}</string>
+			<key>OriginalContent</key>
+			<string>
+</string>
+			<key>OriginalRange</key>
+			<string>{0, 1}</string>
+		</dict>
+	</array>
+	<key>FormatVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

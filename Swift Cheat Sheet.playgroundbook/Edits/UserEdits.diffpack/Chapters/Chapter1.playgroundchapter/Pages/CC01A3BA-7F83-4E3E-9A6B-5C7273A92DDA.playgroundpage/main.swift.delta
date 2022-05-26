@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>BaseFile</key>
+	<string>Chapters/Chapter1.playgroundchapter/Pages/Template.playgroundpage/main.swift</string>
+	<key>Diffs</key>
+	<array>
+		<dict>
+			<key>ModifiedContent</key>
+			<string>import Foundation
+
+// MARK: - Closures
+/**
+ - Self-contained but know about local variables around them.
+ - Can be assigned to properties, variables, or constants and passed as parameters to functions/methods.
+ - Can be used in place of delegate methods that work as callbacks.
+ */
+
+/// Syntax and Shortening
+/**
+ ```swift
+ {(parameters) -&gt; Return Type in statements }
+ ```
+ */
+/// Declare a clisura with two parameters and return type String. Assign this closure to a variable.
+var firstClosure = {(days: Int, name: String) -&gt; String in
+    return "\(name), closures are coming for you in \(days) days."
+}
+print(firstClosure(30, "Lucas"))
+
+/// Inferring Type from Context:
+var noParameterNoReturn: () -&gt; () = { () -&gt; Void in
+    print("told you I return nothing")
+}
+var noParameterNoReturn1 = { print("told you I return nothing") }
+noParameterNoReturn()
+noParameterNoReturn1()
+
+var aParameterAndReturn: (String) -&gt; String = { oneString in 
+    return "\(oneString) + hey there"
+}
+/// Each argument is assigned a name in Swift. Say we have three parameters, let's call them (a, b, c). Swift would assign them ($0, $1, $2)
+var aParameterAndReturn1: (String) -&gt; (String) = { 
+    return "\($0) + hey thehre"
+}
+print(aParameterAndReturn("Lucas"))
+print(aParameterAndReturn1("Lenny Kravitz"))
+
+//MARK: - Calling Closures
+/**
+ - You can use closures in functions as an argument and call the function by placing the required closures type argument.
+ */
+/// A closure that takes in a string and returns a concatenation of the string and an already set string
+var aParameterAndReturn2: (String) -&gt; (String) = {
+    "\($0)" + ", hey there!"
+}
+
+/// a function that takes in an argument of someString and a closure. The closures argument is then taken as the argument the function takes in.
+func thatTakesClosure(_ someString: String, _ aClosure: (String) -&gt; (String)) -&gt; String {
+    return (aClosure(someString))
+}
+
+print(thatTakesClosure("Time", aParameterAndReturn))
+
+/// Returning a Closure from a function
+/**
+ - Closure can be return from a function.
+ */
+func returnClosures(_ someString: String) -&gt; () -&gt; String {
+    let b = "The All-American Rejects - "
+    let concatenate: () -&gt; String = {
+        b + "\(someString)"
+    }
+    return concatenate
+}
+returnClosures("It ends to night")
+
+/// return a closure using a nested function
+func returnClosures1(_ someString: String) -&gt; () -&gt; String {
+    let b = "waasup"
+    func concatenate() -&gt; String {
+        return b + "\(someString)"
+    }
+    return concatenate
+}
+
+// MARK: - Capturing Values
+/**
+ - A closure can capture constants and variables from the surrounding context in which it is defined. Closures exists in 3 forms.
+ - **Global Functions** these are closures with a name that do not capture their surrounding values.
+ - **Nested Functions** closure with a name that capture value of their enclosing function.
+ - **Closure Expressions** unnamed closures that capture values of their surrounding context.
+ */
+func annoyThem(_ someString: String) -&gt; () -&gt; String {
+    var a = "Hello!"
+    func concatenate() -&gt; String {
+        a += "\(someString)"
+        return a
+    }
+    
+    return concatenate
+}
+var annoying = annoyThem("Hello!")
+print(annoying())
+print(annoying())
+print(annoying())
+print(annoying())
+print(annoying())
+
+func greetThem(_ someString: String) -&gt; String {
+    var a = "hey!"
+    a += "\(someString)"
+    return a
+}
+var beNice = greetThem("Hey!")
+print(beNice)
+print(beNice)
+print(beNice)
+print(beNice)
+
+// MARK: - Trailing Closures
+/**
+ - These are used when you have a closure as the last parameter in a function and is too long to be used as an inline closure.
+ */
+var addNameClosure: (String) -&gt; String = {
+    $0 + "Amit"
+}
+
+func greetPeople(greetings: [String], closure: (String) -&gt; String) -&gt; String { 
+    var greeting = ""
+    for aGreeting in greetings {
+        greeting += closure(aGreeting)
+    }
+    return greeting
+}
+
+print(greetPeople(greetings: ["Hallo ", "Hi ", "Hey "], closure: addNameClosure))
+
+// MARK: - Multiple Trailing Closures
+/**
+ - A function can take multiple trailing closures in parameter.
+ - Omit the argument label of first closure and label the remaining closure during closure statement get executed.
+ */
+func someFunc(closure: () -&gt; (), closure2: () -&gt; ()) {
+    closure()
+    closure2()
+}
+
+someFunc { 
+    print("Calling from closure()")
+} closure2: { 
+    print("Calling from closure2()")
+}
+
+// MARK: - Escaping Closures/ Completion Handler
+/**
+ - By default closures are non escaping. A non-escaping closure does not outlives the function it was passed to.
+ - Escaping closures is an example of completion handler. The function returns afree is starts the operation, but the closure isn't called until the operation is completed.
+ */
+
+var number = 10
+var add: (Int) -&gt; Int = { otherName in
+    return number + otherName
+}
+
+func multiply(someNumber: Int, _ aClosure: @escaping(Int) -&gt; Int) {
+    print(aClosure(someNumber) * 20)
+    aClosure(someNumber) * 20
+}
+print(multiply(someNumber: 5, add))
+</string>
+			<key>ModifiedRange</key>
+			<string>{0, 5015}</string>
+			<key>OriginalContent</key>
+			<string></string>
+			<key>OriginalRange</key>
+			<string>{0, 0}</string>
+		</dict>
+	</array>
+	<key>FormatVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

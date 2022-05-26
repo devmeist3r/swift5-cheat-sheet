@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>BaseFile</key>
+	<string>Chapters/Chapter1.playgroundchapter/Pages/Template.playgroundpage/main.swift</string>
+	<key>Diffs</key>
+	<array>
+		<dict>
+			<key>ModifiedContent</key>
+			<string>import Foundation
+// MARK: - Subscripts
+/**
+ - Subscripts is a shortcuts for accessing the member elements of a collection, list, or a sequence.
+ - Use subscripts to set and get values by index without needing separete getter and setter methods.
+ */
+
+/// Subscript Usage
+/**
+ - You can access elements in an Array instance to get a value of an element from array or to set/replace a new element in array
+ */
+var swiftArray = ["Apple", "Google", "Amazon", "Microsoft"]
+swiftArray[2] = "IBM"
+print(swiftArray)
+var itemAtIndex = swiftArray[0]
+print(itemAtIndex)
+
+/**
+ - Using subscript indexing you can access key-value pairs of a Dictionary instance to access, modify dictionary key-value pairs and also to to add a new elements in a dictionary and can remove an elements from a dictionary.
+ */ 
+
+var swiftDictionary = [10: "Apple", 20: "Google", 30: "Amazon"]
+swiftDictionary[30] = "Microsoft"
+print(swiftDictionary)
+let dictValue = swiftDictionary[10]
+print(dictValue!)
+
+/// Subscripting Methods Support
+/**
+ - You can define multiple subscripts for a single type, and the appropriate subscript overload to use is selected based on the type if index value you pass to the script.
+ - Subscripting makes your code simpler and shorter.
+ - Subscript syntax is similar to both instance method syntax and computed property syntax.
+ - Define subscript using subscript keyword.
+ - Subscripts can be read-write or read-only. Like getter-setter or getter-only.
+ - Subscript functions only be declared within type (enumeration, structure, class).
+ - Subscripts can take any number of input parameters, and these input parameters can be any type.
+ */
+
+struct Addition {
+    let adder: Int
+    
+    subscript(index: Int) -&gt; Int { 
+        return adder + (index * 2)
+    }
+}
+
+let addition = Addition(adder: 2)
+print("Final value at index 4 is: \(addition[4])")
+
+// MARK: - Type Subscripts
+/**
+ - Instance subscripts(like before we discuss) call on an instance of a type (structure, classes, enumerations)
+ - Type subscripts get called on type itself.
+ - Indicate a type subscript using static keyword.
+ */
+
+enum Colors: Int {
+    case Red = 1, Blue, Green, Violet, Yellow, Orange
+    static subscript(n: Int) -&gt; Int { 
+        return Colors(rawValue: n)!.rawValue
+    }
+}
+
+let color = Colors[4]
+print(color)
+
+/// Subscript with default argument
+enum Colors1: Int {
+    case red = 1, green, blue, purple
+    
+    static subscript(n: Int, defaultArgument defaultArg: Int = 10000) -&gt; Int {
+        if n &gt;= 0 &amp;&amp; n &lt; 5 { 
+            return Colors1(rawValue: n)!.rawValue
+        } else {
+            return defaultArg
+        }
+    }
+}
+
+print(Colors1[2])
+print(Colors1[8])
+</string>
+			<key>ModifiedRange</key>
+			<string>{0, 2655}</string>
+			<key>OriginalContent</key>
+			<string>
+</string>
+			<key>OriginalRange</key>
+			<string>{0, 1}</string>
+		</dict>
+	</array>
+	<key>FormatVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

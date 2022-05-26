@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>BaseFile</key>
+	<string>Chapters/Chapter1.playgroundchapter/Pages/Template.playgroundpage/main.swift</string>
+	<key>Diffs</key>
+	<array>
+		<dict>
+			<key>ModifiedContent</key>
+			<string>import Foundation
+// MARK: - Inheritance
+/**
+ - A class can inherit methods, properties, and other characteristics from another class.
+ */
+/// Base Class
+/**
+ - Base class is a root class which does not inherit from any other class.
+ */
+class Computer {
+    var processoSpeed = 1.0
+    var description: String { 
+        return "processor speed of \(processoSpeed) GHZ"
+    }
+    
+    func manufacturer() {
+        
+    }
+}
+
+let myComputer = Computer()
+print("Computer has a:\(myComputer.description)")
+
+/// Subclassing
+/**
+ - Act of basing a new class on an existing class.
+ */
+class Desktop: Computer {
+    var fullSizeKeyboard = false
+}
+
+let desktop = Desktop()
+desktop.fullSizeKeyboard = true
+desktop.processoSpeed = 2.4
+print("My desktop has a \(desktop.description)")
+
+/// Access SuperClass Characteristics
+/**
+ - Sub-class can access it's super class characteristics which it inherited.
+ super.property
+ super.method()
+ */
+
+/// Overriding
+/**
+ - You can override an inherited super class characteristics.
+ - You can override instance and type methods to provide an alterantive implementation in your subclass.
+ - You can override instance and type property to provide your own custom getter and setter for that property. You can override subscript in subclass.
+ - While overriding, you can not make a read-write computed property(with getter and setter) to read-only computed property (with getter only).
+ - You can make a read-olny computed property to read-write computed property by provinding both getter and setter in your subclass.
+ - You can add property observers to an inherited property. You can not add property observers to inherited constant stored property or to inherited read-only computed property.
+ */
+
+class Desktop1: Computer { 
+    var fullSizeKeyborad = false
+    
+    override func manufacturer() {
+        print("Manufacturer is Apple")
+    }
+}
+
+let desktop1 = Desktop1()
+desktop1.manufacturer()
+
+/// Example of Overrinding property getter and setter
+class Laptop: Computer {
+    var processorName: String = ""
+    override var description: String {
+        return "Laptop has a \(super.description) and processor name is \(processorName)"
+    }
+}
+
+let laptop = Laptop()
+laptop.processoSpeed = 2.0
+laptop.processorName = "Intel core i7"
+
+print("My \(laptop.description)")
+
+/// Universal Self for subclasses
+class Vehicle {
+    class var numberOfWheels: Int {
+        get { return 4 }
+    }
+    
+    func getNumberOfWheel() {
+        print("Total number of Wheel \(Vehicle.numberOfWheels)")
+    }
+}
+
+class Bike: Vehicle {
+    override class var numberOfWheels: Int { 
+        get { return 2 }
+    }
+}
+
+let harleyDavidson = Bike()
+harleyDavidson.getNumberOfWheel()
+
+/// Preventing Overrides
+class Computer1 { 
+    final var description: String {
+        return "SomeStringType"
+    }
+    
+    final func manufacturer() {}
+}
+</string>
+			<key>ModifiedRange</key>
+			<string>{0, 2853}</string>
+			<key>OriginalContent</key>
+			<string></string>
+			<key>OriginalRange</key>
+			<string>{0, 0}</string>
+		</dict>
+	</array>
+	<key>FormatVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

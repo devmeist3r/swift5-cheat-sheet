@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>BaseFile</key>
+	<string>Chapters/Chapter1.playgroundchapter/Pages/Template.playgroundpage/main.swift</string>
+	<key>Diffs</key>
+	<array>
+		<dict>
+			<key>ModifiedContent</key>
+			<string>import Foundation
+
+// MARK: - Methods
+
+/**
+ - Methods are functions that are associated with a particular type.
+ - Type can be class, an enumeration or can be a structure.
+ - Methods are of two types
+ 1. Instance Methods.
+ 2. Class/Type Methods.
+ */
+
+/// Instance Methods
+/**
+ - Instance methods are functions that belong to instance of a particular type.
+ - Instance methods are provided by class, structure, or enumeration.
+ - An instance methods has implicit access to all other instance methods and properties of that type.
+ */
+class Counter { 
+    var count = 0
+    func increment() { 
+        count += 1
+    }
+    
+    func incrementBy(amount: Int) {
+        count += amount
+    }
+    
+    func sayHelloMethod() {
+        count = 0
+        print("Hello Swift Method")
+    }
+    
+    func reset() {
+        self.sayHelloMethod()
+        count = 0
+    }
+}
+
+let counter = Counter()
+counter.increment()
+counter.incrementBy(amount: 7)
+counter.reset()
+
+/// Local and External Parameter Names for Methods
+/**
+ - Local parameter names are accessed inside the method.
+ - Argument Labels allow us to name a method parameters to make their purpose clear and readable.
+ - The name of a method typically refers to the method's first parameter using a preposition such as with, for, or by.
+ ```swift
+ func method_nameBy(local_parameter: parameter_type, argument_label local_parameter: parameter_type) { 
+ // statements
+ }
+ ```
+ */
+
+/// The self Property
+/**
+ - Instance can send message or can call method to themselves within its own instance methods.
+ - You use the self property to refer to the current instance within its own instance methods.
+ - self property is useful when a parameter name for an instance method has the same name as a property of that instance.
+ - You use self property to distinguish between the parameter name and the property name.
+ */
+class Arithmetic {
+    var a: Int = 0
+    var b: Int = 0
+    var result: Int = 0
+    
+    func addBy(a: Int, _ b: Int) {
+        self.a = a
+        self.b = b
+        
+        result = a + b
+        print("Result of addition is: \(result)")
+    }
+}
+
+let addition = Arithmetic()
+addition.addBy(a: 5, 11)
+
+/// mutating Keyword
+/**
+ - In Swift, you can modify the properties of your structure or enumeration (Both structure and enumeration are value types) within a particular method by using mutating keyword before the func keyword for that method.
+ - Without using mutating keyword, you can not modify properties of your structures or enumeration within a particular method.
+ */
+
+struct Dimension {
+    var height = 0
+    var width = 0
+    
+    mutating func increaseDimensionBy(deltaH: Int, width deltaW: Int) { 
+        height *= deltaH
+        width *= deltaW
+    }
+}
+
+var dimension = Dimension(height: 1, width: 5)
+dimension.increaseDimensionBy(deltaH: 2, width: 4)
+print("The height is now: \(dimension.height) and the width is: \(dimension.width)")
+
+/// Type/Class Methods
+/**
+ - Define methods that are called on the type itself.
+ - Swift support methods for structures, enumerations and for classes.
+ - You can define type-level methods for all classes, structures, and for enumerations.
+ - type methods are called just like you call instance methods, using dot(.) syntax.
+ - Inficate type methods by wrinting the static keyword before the methods func keyword.
+ - Indicate type method by wrtiting the class keyword for those type methods which can be overriden by subclasses.
+ - Each type method is explicity scoped to the type is supports.
+ - Any unqualified method and property names that you use within the body of type method will refer to other type-level methods and properties.
+ */
+
+class MyClass {
+    static func someTypeMethod() {
+        //statements
+        print(#function)
+    }
+    
+    class func typeMethodCanBeOverriden() { 
+        //statements
+        print(#function)
+    }
+}
+MyClass.someTypeMethod
+MyClass.typeMethodCanBeOverriden
+</string>
+			<key>ModifiedRange</key>
+			<string>{0, 3918}</string>
+			<key>OriginalContent</key>
+			<string>
+</string>
+			<key>OriginalRange</key>
+			<string>{0, 1}</string>
+		</dict>
+	</array>
+	<key>FormatVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

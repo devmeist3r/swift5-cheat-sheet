@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>BaseFile</key>
+	<string>Chapters/Chapter1.playgroundchapter/Pages/Template.playgroundpage/main.swift</string>
+	<key>Diffs</key>
+	<array>
+		<dict>
+			<key>ModifiedContent</key>
+			<string>import Foundation
+/**
+ - Structure is use to encapsulate simple data values.
+ - Structure is use to copy the encapsulated data and its associated properties by values rather than by references.
+ */
+struct Color { 
+    var redColor: Int
+    var greenColor: Int
+    var blueColor: Int
+}
+
+// MARK: - Accessing Structure Members/Properties
+/**
+ - To access any member of a structure.
+ - First create an instance of swift structure.
+ - Then access the properties of an instance using dot syntax. 
+ */
+
+let aColor = Color(redColor: 255, greenColor: 255, blueColor: 255)
+print("The red color property of Color structure has value: \(aColor.redColor)")
+print("The blue color property of Color structure has value: \(aColor.blueColor)")
+
+/// Member-wise initializers with default initial value provided to member.
+struct User {
+    let name: String
+    let gender: String = "Female"
+}
+
+let aUser = User(name: "Alexa")
+print(aUser)
+
+// MARK: - Structures as Functions Arguments
+/**
+ - Structures are value types not like reference types.
+ - You can pass a structure as a function argument just like you pass any other data type.
+ */
+
+func printColor(a: Color) -&gt; Void { 
+    print("Red component of color is: \(a.redColor)")
+    print("Blue component of color is: \(a.blueColor)")
+}
+
+func main() -&gt; Int {
+    let aColor = Color(redColor: 55, greenColor: 255, blueColor: 100)
+    printColor(a: aColor)
+    return 0
+}
+
+main()
+
+
+</string>
+			<key>ModifiedRange</key>
+			<string>{0, 1416}</string>
+			<key>OriginalContent</key>
+			<string></string>
+			<key>OriginalRange</key>
+			<string>{0, 0}</string>
+		</dict>
+	</array>
+	<key>FormatVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

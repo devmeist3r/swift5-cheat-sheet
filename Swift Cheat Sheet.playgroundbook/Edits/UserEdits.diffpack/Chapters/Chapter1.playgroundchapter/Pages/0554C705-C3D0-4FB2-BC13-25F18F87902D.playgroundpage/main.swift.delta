@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>BaseFile</key>
+	<string>Chapters/Chapter1.playgroundchapter/Pages/Template.playgroundpage/main.swift</string>
+	<key>Diffs</key>
+	<array>
+		<dict>
+			<key>ModifiedContent</key>
+			<string>import Foundation
+// MARK: - Enumerations
+/**
+ - Enumeration is an user-defined data type which consists of set of related values and enables you to work with those values.
+ */
+/// Enumeration Syntax
+/**
+ - Declare syntax and access it value members.
+ - Declare enumerations using enum keyword.
+ - Use the case keyword to introduce new enumeration cases
+ */
+enum SiliconValley {
+    case Apple
+    case Google
+    case Amazon
+    case Microsoft
+}
+
+/// Declaration of Enumerated variable 
+/**
+ - Initialize a constant or a variable wItú on of the possible cases of enumeration.
+ */
+
+var companyName = SiliconValley.Apple
+print(companyName)
+companyName = SiliconValley.Google
+print(companyName)
+companyName = .Amazon
+print(companyName)
+companyName = .Microsoft
+print(companyName)
+
+// MARK: - Implicit Raw/Default Values
+/**
+ - Implicity assigned values are pre-populated raw/default values to each member or a case of an enumeration.
+ - Pre-populated default values to each cases will be of the same type.
+ - Pre-populated default values can be of type Int, String, Character, Float, Double, etc.
+ */
+
+enum Direction: String {
+    case North, South, East, West
+}
+print(Direction.North)
+
+enum SiliconValley1: Int {
+    case Apple, Google, Amazon, Microsoft
+}
+print(SiliconValley1.Google)
+
+// MARK: - Explicit Default Values
+/**
+ - You can explicitly assign the raw/default values of enumeration members.
+ */
+
+enum Directionn: Character { 
+    case North = "n"
+    case South = "s"
+    case East = "e"
+    case West = "w"
+}
+
+enum SiliconValleyy: Int { 
+    case Apple = 1, Google, Amazon, Microsoft
+}
+
+/// rawValue Property
+/**
+ - rawValue property is available in swift to access the raw value of an enumeration case.
+ - Type of enum should be defined.
+ */
+let companyRank = SiliconValleyy.Amazon.rawValue
+print("Raw value of Amazon is is \(companyRank)")
+
+// MARK: - Initializers
+/**
+ - Swift support initializers for enumeration.
+ - Initialize a variable using raw value.
+ */
+
+enum Directioon: Character {
+    case north = "n"
+    case south = "s"
+    case east = "e"
+    case west = "w"
+    
+    init?(direction: String) {
+        if direction.lowercased() == "north" {
+            self = .north
+        } else if direction.lowercased() == "east" {
+            self = .east
+        } else if direction.lowercased() == "south" {
+            self = .south
+        } else if direction.lowercased() == "west" {
+            self = .west
+        } else {
+            return nil
+        }
+    }
+}
+
+if let currectDirection = Directioon.init(direction: "east") {
+    print("current direction is \(currectDirection)")
+}
+
+// MARK: - Matching Optional enums against non-optionals 
+enum Toss {
+    case head
+    case tail
+}
+
+let result: Toss? = .some(Toss.head)
+switch result {
+case .head:
+    print("Coin is in head side")
+case .tail:
+    print("Coin is in tail side")
+default:
+    print("Coin is bad")
+}
+
+// MARK: - Associated Values/Unions
+/// Associated Values in Swift
+/**
+ - Enumarations which store associated values of any gIvan type, and the value types can be different for each case of the enumeration if needed.
+ - Declare a new enumerated variable and assign it a value of enumeration case with an associated value.
+ - Settings a new value to the same enumerated variable will overrides the old value.
+ - An enumerated variable can store only one enumeration case with an associated value at any given time. Single memory is required only.
+ */
+
+enum Color {
+    case InRGB(Int, Int, Int)
+    case InHex(String)
+}
+
+var colorForm = Color.InRGB(255, 255, 255)
+colorForm = Color.InHex("FFFFFF")
+/**
+ - You can extract each associated value as a constant or a variable using switch statement:
+ */
+
+switch colorForm {
+case Color.InRGB(let redValue, let greenValue, let blueValue):
+    print("RGB value is: \(redValue) \(greenValue) \(blueValue)")
+case .InHex(let hexStringValue):
+    print("Hex string value is: \(hexStringValue)")
+}
+</string>
+			<key>ModifiedRange</key>
+			<string>{0, 3928}</string>
+			<key>OriginalContent</key>
+			<string>
+</string>
+			<key>OriginalRange</key>
+			<string>{0, 1}</string>
+		</dict>
+	</array>
+	<key>FormatVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

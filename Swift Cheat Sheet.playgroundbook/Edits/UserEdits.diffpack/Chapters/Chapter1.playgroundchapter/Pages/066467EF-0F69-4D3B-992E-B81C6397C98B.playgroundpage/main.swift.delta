@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>BaseFile</key>
+	<string>Chapters/Chapter1.playgroundchapter/Pages/Template.playgroundpage/main.swift</string>
+	<key>Diffs</key>
+	<array>
+		<dict>
+			<key>ModifiedContent</key>
+			<string>import Foundation
+import UIKit
+
+// MARK: - Properties
+/**
+ - Using property an object maintain a link or reference to another object to access or set the state of another object.
+ - Property is a special sort of a class member, intermediate between an instance variable and a method.
+ - Properties are read and written like fields which translated to get and set method calls. 
+ - In Swift you do not need instance variable separately. Just store the value in stored property and if you want to use custom setter then use property observer on stored property.
+ - In Swift you can not declare property of private instance variable. Property is only declared and defined for public instance variable.
+ */
+
+/// Stored Property
+/**
+ - Store constant or variable values as instance
+ - Provided by classes and structures.
+ - Can provide a default value for a stored property as part of its definition.
+ - During initialization you can initialize and can modify the initial values.
+ */
+struct Dimension {
+    var width: Int
+    let height = 10
+}
+
+var dimInstance = Dimension(width: 100)
+dimInstance.width = 25
+
+print("width is: \(dimInstance.width)")
+print("height is: \(dimInstance.height)")
+
+/// Lazy Property
+/**
+ - A property whose initial values is not calculated when the variables is initialize for the first time.
+ - Declare using lazy keyword. Can not be a constant. So declare only using `var` keyword.
+ - Useful when the initial value for property is dependent on outside factors whose values are no known until after an instance's initialization is complete.
+ */
+
+class House { 
+    lazy var house = HouseNumber()
+}
+
+class HouseNumber {
+    var number = 88
+}
+
+var yourHouse = House()
+print("\(yourHouse.house.number)")
+
+/// Computed Property
+/**
+ - Custom getter and setter
+ - Do nto actually store a value 
+ - Provide a getter and an optional setter to retrieve and set other properties and values indirectly
+ - Provided by classes, structure and enumeration.
+ */
+
+class Bill { 
+    var total: Int = 0
+    var paid: Int = 0
+    var unpaid: Int { 
+        get { return total - paid }
+        set(newUnpaid) {
+            paid = total - newUnpaid
+        }
+    }
+}
+
+var bill = Bill()
+bill.total = 200
+print("Total unpaid is: \(bill.unpaid)")
+bill.unpaid = 75
+print("Total paid is: \(bill.paid)")
+
+/// Read-Only Computed Properties
+/**
+ - A computed property with a getter but no setter.
+ - Always returns a value.
+ - Can not set to anothder value.
+ - Can be accessed throught dot(.) syntax.
+ */
+
+class Bills { 
+    var total: Int = 0
+    var paid: Int = 0
+    var unpaid: Int { 
+        // only getter, no setter
+        return total - paid
+    }
+}
+
+var bills = Bills()
+bills.total = 200
+bills.paid = 110
+print("Total unpaid is: \(bills.unpaid)")
+
+// MARK: - Property Observer With Stored Property
+/**
+ - Property Observers observe and respond to a changes in a property value.
+ - Property observers are called overtime a property value is set.
+ - Add property observers to a stored property, overrinding stored and computed property.
+ - Can not add to lazy properties.
+ */
+
+/// Property Observers
+/**
+ - willSet: is called just before the value is stored. It passed the new property value as a constant parameter. Specify a parameter name. by default the name will be newValue
+ - didSet: is called immediately after the new value is stored. It passed a constant parameter containing the old property value. Specify a parameter name. Or by default the name will be oldValue
+ */
+
+class Balance { 
+    var totalBalance: Int = 0 {
+        willSet(newTotalBalance) {
+            print("This is going to be total balance: \(newTotalBalance)")
+        }
+        didSet(previousBalance) { 
+            if totalBalance &gt; previousBalance {
+                print("Added this much amount: \(totalBalance - previousBalance)")
+            }
+        }
+    }
+}
+
+let balance = Balance()
+balance.totalBalance = 100
+balance.totalBalance = 250
+
+/// Using Key-Value Observer
+class PropertyObserver {
+    var myLabel = UILabel()
+    var keyValueObserver: NSKeyValueObservation!
+    
+    init() {
+        self.handlePropertyObserver()
+    }
+    
+    func handlePropertyObserver() {
+        keyValueObserver = myLabel.observe(\.text, options: NSKeyValueObservingOptions.old) { (observed, change) in 
+            if change.oldValue == "DEF" {
+                print("Property.text of observed property myLabel is now \(String(describing: observed.text)) and old value was \(String(describing: change.oldValue))")
+            }
+        }
+    }
+}
+
+let first = PropertyObserver()
+first.myLabel.text = "DEF"
+first.myLabel.text = "ABC"
+
+/// Key-Path Expression as Functions
+struct iPhone {
+    let name: String
+    let modelYear: Int
+    let operatingSystem: String
+    
+    var carFaceID: Bool {
+        if self.modelYear &gt; 2017 {
+            return true
+        } else {
+            return false
+        }
+    }
+}
+
+let iPhone4 = iPhone(name: "iPhone4", modelYear: 2010, operatingSystem: "iOS4")
+let iPhone6 = iPhone(name: "iPhone6", modelYear: 2014, operatingSystem: "iOS6")
+let iPhone12 = iPhone(name: "iPhone12", modelYear: 2020, operatingSystem: "iOS14")
+
+let iPhones = [iPhone4, iPhone6, iPhone12]
+let iPhoneNames = iPhones.map { $0.name }
+let iPhoneModelYear = iPhones.map(\.modelYear)
+
+print(iPhoneNames)
+print(iPhoneModelYear)
+
+// MARK: - Type Properties
+/**
+ - Belong to the type itself. Not to an instance.
+ - There will only ever be one copy of these properties, no matter how many instances of that type you create.
+ - Define type property using static keyword.
+ - Stored type property can be a variable or a constant. Always give a default initial value.
+ - Computed type property are always variables.
+ - Universal to all instances which can use.
+ - Define overriding computed property for class types using class keyword.
+ - Retrive and set type property using dot(.) syntax
+ */
+
+class MyClass {
+    static var storedTypeProperty: Int = 10
+    static var readonlycomputedTypeProperty: Int {
+        return 25
+    }
+    
+    class var overrideableReadOnlyComputedTypeProperty: Int {
+        return 80
+    }
+}
+
+print(MyClass.storedTypeProperty)
+MyClass.storedTypeProperty = 40
+print(MyClass.storedTypeProperty)
+print(MyClass.readonlycomputedTypeProperty)
+print(MyClass.overrideableReadOnlyComputedTypeProperty)
+</string>
+			<key>ModifiedRange</key>
+			<string>{0, 6299}</string>
+			<key>OriginalContent</key>
+			<string>
+</string>
+			<key>OriginalRange</key>
+			<string>{0, 1}</string>
+		</dict>
+	</array>
+	<key>FormatVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

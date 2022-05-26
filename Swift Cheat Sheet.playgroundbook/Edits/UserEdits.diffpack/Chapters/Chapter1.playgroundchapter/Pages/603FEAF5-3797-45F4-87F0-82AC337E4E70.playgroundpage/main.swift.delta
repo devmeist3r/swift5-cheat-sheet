@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>BaseFile</key>
+	<string>Chapters/Chapter1.playgroundchapter/Pages/Template.playgroundpage/main.swift</string>
+	<key>Diffs</key>
+	<array>
+		<dict>
+			<key>ModifiedContent</key>
+			<string>import Foundation
+
+// MAKK: - Functions
+/**
+ - A function is a unit of code that performs a specific operation.
+ - A function is identified by name.
+ */
+/// Defining Functions
+/**
+ - You must provide the declaration or definition of each function before making any calls to that function.
+ - Function definition tells the compiler five things about the function:
+ 1. Who can call it 
+ 2. The type of value it returns
+ 3. Function name.
+ 4. The number and type of arguments it takes.
+ 5. Describes what the function does.
+ */
+
+func sayGoodMorning(name: String) -&gt; String {
+    let greeting = "Good Morning \(name)!"
+    return greeting
+}
+/// Calling a Function
+/**
+ - When program call a function, program control is transferred to the called functions.
+ - Called function execute it statement and when its function-ending closing brace is reached, it returns program control back to the main program.
+ - To call a function, you need to pass the required parameters along with function name.
+ */
+print(sayGoodMorning(name: "Lucas"))
+
+/// Function without parameters
+/**
+ - We may have functions with empty parameter list.
+ - Without any parameters.
+ */
+func sayGoodMorning() -&gt; String {
+    return "Good Morning Everyone!"
+}
+print(sayGoodMorning())
+
+/// Functions With Multiple Parameters
+/**
+ - Functions can have multiple input parameters.
+ - Function parameters are constants by default.
+ */
+func calculateAverage(num1: Int, num2: Int) -&gt; Int { 
+    var x, y, result: Int
+    x = num1
+    y = num2
+    result = (x + y) / 2
+    return result
+}
+print(calculateAverage(num1: 2, num2: 6))
+
+/// Functions without return values
+/**
+ - Function can return nothing.
+ - Function which returns nothing is represented by a data type called Void in Swift.
+ */
+
+func sayGoodMorning1(name: String) -&gt; Void {
+    print("Good Morning \(name)!")
+}
+sayGoodMorning1(name: "Tim")
+
+/// Optional Tuple Return Types:
+/**
+ - Optional tuple type can be represented as (Int, Int)?
+ - Optional tuple type (String, Int, Int)? is different from a tuple that contains optional types such (String?, Int?, Int?).
+ */
+func minAndMax(intArr:[Int]) -&gt; (minimum: Int, maximum: Int)? { 
+    if intArr.isEmpty { return nil } 
+    var currentMin = intArr[0]
+    var currentMax = intArr[1]
+    for value in intArr[1..&lt;intArr.count] {
+        if value &lt; currentMin {
+            currentMin = value
+        } else if value &gt; currentMax {
+            currentMax = value
+        }
+    }
+    return(currentMin, currentMax)
+}
+
+if let bounds = minAndMax(intArr: [2, 0, 5, -8, 23]) {
+    print("Minimus is \(bounds.minimum) and Maximum is \(bounds.maximum)")
+}
+
+/// Implicit return from a single expression function
+/**
+ - No need to use return keyword for a function with single expression.
+ */
+func addTwoInteger(_ a: Int, with b: Int) -&gt; Int {
+    a + b
+}
+print(addTwoInteger(3, with: 6))
+
+/// Function Parameter Names
+/**
+ - Swift function has an argument label and a parameter name.
+ - Argument Label names a function parameters to make their purpose more clear.
+ - Parameter name is used inside the function in the implementation of function's body.
+ */
+
+func addTwoIntegers(add a: Int, to b: Int) -&gt; Int { 
+    var result: Int
+    result = a + b
+    return result
+}
+print(addTwoIntegers(add: 6, to: 2))
+
+/// Omitting Argument Labels
+/**
+ - You can omit argument label names in swift function.
+ - First parameter omits its argument label by default. So for first parameter both external and local parameter name can be same to omit argument label.
+ - For second, and subsequent parameters, write an underscore(_) instead of an explicit argument label for that parameter.
+ */
+
+func addTwoIntegers1(a: Int, _ b: Int) -&gt; Int {
+    var result: Int
+    result = a + b
+    return result
+}
+
+print(addTwoIntegers1(a: 2, 5))
+
+// MARK: - Default Parameter Values
+/**
+ - You can provide a default value for any parameter in a function by assigning a value to the parameter after than parameter's type.
+ */
+func addTwoIntegerS(a: Int = 2, _ b: Int = 8) -&gt; Int { 
+    var result: Int
+    result = a + b
+    return result 
+}
+
+addTwoIntegerS()
+addTwoIntegerS(a: 4, 6)
+addTwoIntegerS(a: 6, 8)
+
+// MARK: - Variadic Parameters/ Functions
+/**
+ - A variadic parameter accepts zero or multiple number of values of specified type.
+ - Write variadic parameters by inserting three period characters(...)
+ - A function may have maximum one variadic parameter.
+ */
+
+func addNumbers(arrayOfNumbers: Int...) -&gt; Int {
+    var total: Int = 0
+    for number in arrayOfNumbers { 
+        total += number
+    }
+    return total
+}
+
+addNumbers(arrayOfNumbers: 10, 40)
+print(addNumbers(arrayOfNumbers: 1, 2, 3, 4, 5, 6, 7))
+print(addNumbers(arrayOfNumbers: 10, 40))
+
+// MARK - In-Out Parameters/Call by reference
+/**
+ - Function parameters are constants by defautlt.
+ - If you want a function to modify a parameter's value and you want those changes to persist after the function call has ended, define that parameter as an in-out parameter.
+ - Write an in-out parameter by placing the inout keyword right before a parameter's type.
+ - You can only pass a variable as the argument for an in-out parameter.
+ */
+func increment(a: inout Int) -&gt; Int {
+    a = a + 1
+    return a
+}
+
+var x: Int = 10
+increment(a: &amp;x)
+print("value of a passed is 11 and changed value of x is \(x)")
+
+// MARK: - Function Types/Function Declaration
+/**
+ - Function types as parameter and function types as a return value.
+ */
+func sum(a: Int, b: Int) -&gt; Int {
+    return a + b
+}
+var addition: (Int, Int) -&gt; Int = sum
+var addition1 = sum
+
+print("Result of sum \(sum(a: 2, b: 5))")
+
+/// Function Types as Parameter Types
+/**
+ - You can use a function type such as (Int, Int) -&gt; Int as parameter type for another function. Just like you use other data types Int, Character, String as parameter
+ */
+func printAddition(addition: (Int, Int) -&gt; Int, firstNumber a: Int, sencondNumber b: Int) {
+    print("Result is \(addition(a, b))")
+}
+printAddition(addition: sum, firstNumber: 2, sencondNumber: 5)
+
+/// Function Types as Return Types
+/**
+ - You can use a function type as the return type of a function. Just like you use Int, Character, String, [String] as return type of a function.
+ */
+//func functionReturnType(a: Int, b: Int) -&gt; (Int, Int) -&gt; Int {
+//}
+</string>
+			<key>ModifiedRange</key>
+			<string>{0, 6250}</string>
+			<key>OriginalContent</key>
+			<string>
+</string>
+			<key>OriginalRange</key>
+			<string>{0, 1}</string>
+		</dict>
+	</array>
+	<key>FormatVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>BaseFile</key>
+	<string>Chapters/Chapter1.playgroundchapter/Pages/Template.playgroundpage/main.swift</string>
+	<key>Diffs</key>
+	<array>
+		<dict>
+			<key>ModifiedContent</key>
+			<string>import Foundation
+
+/**
+ - Initialization is the process of preparing an instance of a class, structure, or enumeration for use.
+ - Initializer does not return any value.
+ - Called just begore the new instance and stored property are ready for use.
+ */
+
+// Initializers
+/**
+ - Type must set all of their stored properties to an appropriate initial value by the time an instance of that type is created.
+ */
+
+struct Dimension { 
+    var height: Double
+    var width: Double
+    
+    init() { 
+        height = 10
+        width = 10
+    }
+}
+
+var area = Dimension()
+print("area we got using dimension is: \(area.height * area.width)")
+
+// MARK: - Default Property/ Instance Variables Values
+/**
+ - You can provide default initial value of a stored property as part of the property's declaration.
+ */
+
+// MARK: - Initialization Parameters
+/**
+ - You can customize initialization process with input parameters.
+ - Initialization parameters have the same abilities and syntax as function and method parameters.
+ - Swift provides an automatic argument label for every parameter in an initializer if you do not provide an external parameter name.
+ */
+
+struct Dimensions { 
+    var height: Double
+    var width: Double
+    var area: Double
+    
+    init(height: Double, withWidth width: Double) { 
+        self.height = height
+        self.width = width
+        area = height * width
+    }
+    
+    init(_ height: Double) { 
+        self.height = height * 2
+        self.width = 0.0
+        area = 0.0
+    }
+}
+
+let dimensions = Dimensions(height: 10, withWidth: 10)
+print("Using first initializer is: \(dimensions)")
+
+let dimensions2 = Dimensions(10.0)
+print("Using second initializers is: \(dimensions2)")
+
+// MARK: - Optional Property Types
+/**
+ - A stored property can be an optional type.
+ - Store property of an optional type are automatically initialized with a value of nil. No value during initialization.
+ - You can assign a value to a constant property at any point during initialization, as long as it is set to a definete values by the time initialization finishes.
+ - Once a constant property is assigned a value, it can't be further modified.
+ - For class instance, a constant property can be modified during initialization only by the class that introduces it. It can not be modified by a subclass.
+ */
+
+struct Dimension2 { 
+    var height: Double
+    var width: Double
+    var depth: Double?
+    
+    init(height: Double, withWidth width: Double) { 
+        self.height = height
+        self.width = width
+    }
+    
+    func get() { 
+        print("\(height) and \(width)")
+    }
+}
+
+var dimension2 = Dimension2(height: 10, withWidth: 10)
+dimension2.get()
+print("Depth has no value during init: \(dimension2)")
+dimension2.depth = 20.0
+</string>
+			<key>ModifiedRange</key>
+			<string>{0, 2741}</string>
+			<key>OriginalContent</key>
+			<string>
+</string>
+			<key>OriginalRange</key>
+			<string>{0, 1}</string>
+		</dict>
+	</array>
+	<key>FormatVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>
